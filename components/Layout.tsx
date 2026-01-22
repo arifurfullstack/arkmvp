@@ -11,43 +11,43 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, activePage, setActivePage, onOpenCreateModal }) => {
   return (
-    <div className="min-h-screen flex flex-col font-sans">
+    <div className="min-h-screen flex flex-col font-sans bg-gradient-to-br from-obsidian via-charcoal to-obsidian pb-20 lg:pb-0">
       {/* Navbar */}
-      <nav className="sticky top-0 z-50 glass border-b border-white/5 h-14">
+      <nav className="sticky top-0 z-50 glass border-b border-white/5 h-16 shadow-lg shadow-primary/5">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
           <div className="flex items-center gap-8">
             <h1 
-              className="text-xl font-black tracking-tighter text-white flex items-center gap-1.5 cursor-pointer"
+              className="text-2xl font-black tracking-tighter text-white flex items-center gap-1.5 cursor-pointer hover:text-primary transition-colors duration-300 animate-fade-in"
               onClick={() => setActivePage(Page.Landing)}
             >
-              ARK
+              ✨ ARK
             </h1>
             <div className="relative hidden md:block">
               <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
               <input 
-                className="bg-obsidian border border-white/5 rounded-lg pl-9 pr-4 py-1.5 text-[13px] w-[320px] focus:border-white/20 outline-none text-slate-200 placeholder:text-slate-600 transition-all" 
+                className="bg-white/[0.02] border border-white/10 rounded-xl pl-9 pr-4 py-2.5 text-[13px] w-[340px] focus:border-primary/50 focus:bg-white/[0.05] outline-none text-slate-200 placeholder:text-slate-600 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.03]" 
                 placeholder="Search stories, tags, people..." 
                 type="text" 
               />
             </div>
           </div>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <button 
               onClick={onOpenCreateModal}
-              className="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-4 py-1.5 rounded-lg text-[13px] font-bold transition-all"
+              className="hidden sm:inline-flex bg-gradient-to-r from-primary/20 to-accent/20 hover:from-primary/30 hover:to-accent/30 text-white border border-primary/30 hover:border-primary/50 px-5 py-2 rounded-lg text-[13px] font-bold transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5"
             >
-              Create Post
+              ✍️ Create Post
             </button>
-            <button className="p-1.5 text-slate-400 hover:text-white transition-colors">
+            <button className="p-2 text-slate-400 hover:text-primary hover:bg-white/5 rounded-lg transition-all duration-300 hover:shadow-md hover:shadow-primary/10">
               <span className="material-symbols-outlined text-lg">notifications</span>
             </button>
             <div 
-              className="flex items-center gap-2 px-2 py-1 bg-white/5 border border-white/5 rounded-full cursor-pointer hover:bg-white/10 transition-all"
+              className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-white/5 to-white/[0.02] border border-primary/20 hover:border-primary/50 rounded-full cursor-pointer hover:bg-white/10 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/10"
               onClick={() => setActivePage(Page.Profile)}
             >
-              <span className="text-[11px] font-bold text-white pl-1">Me •</span>
-              <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-white text-[10px] font-bold">JR</div>
+              <span className="text-[11px] font-bold text-slate-300 pl-1 group-hover:text-white transition-colors">Me •</span>
+              <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-white text-[11px] font-bold shadow-lg shadow-primary/20">JR</div>
             </div>
           </div>
         </div>
@@ -130,11 +130,20 @@ const Layout: React.FC<LayoutProps> = ({ children, activePage, setActivePage, on
       </div>
 
       {/* Mobile Nav */}
-      <div className="lg:hidden fixed bottom-0 left-0 w-full glass border-t border-white/5 flex items-center justify-around py-3 z-50">
-        <button onClick={() => setActivePage(Page.Feed)} className={`material-symbols-outlined ${activePage === Page.Feed ? 'text-primary' : 'text-slate-600'}`}>home</button>
-        <button onClick={() => setActivePage(Page.Explore)} className={`material-symbols-outlined ${activePage === Page.Explore ? 'text-primary' : 'text-slate-600'}`}>explore</button>
-        <button onClick={onOpenCreateModal} className="material-symbols-outlined text-white bg-primary p-2 rounded-full shadow-lg shadow-primary/20">add</button>
-        <button onClick={() => setActivePage(Page.Profile)} className={`material-symbols-outlined ${activePage === Page.Profile ? 'text-primary' : 'text-slate-600'}`}>person</button>
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 glass border-t border-white/10 flex items-center justify-around py-3 z-50 backdrop-blur-xl">
+        <button onClick={() => setActivePage(Page.Feed)} className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-all duration-300 ${activePage === Page.Feed ? 'text-primary bg-primary/10' : 'text-slate-600 hover:text-white hover:bg-white/5'}`}>
+          <span className="material-symbols-outlined">home</span>
+          <span className="text-[9px] font-bold">Home</span>
+        </button>
+        <button onClick={() => setActivePage(Page.Explore)} className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-all duration-300 ${activePage === Page.Explore ? 'text-primary bg-primary/10' : 'text-slate-600 hover:text-white hover:bg-white/5'}`}>
+          <span className="material-symbols-outlined">explore</span>
+          <span className="text-[9px] font-bold">Explore</span>
+        </button>
+        <button onClick={onOpenCreateModal} className="material-symbols-outlined text-white bg-gradient-to-r from-primary to-accent p-3 rounded-full shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-1">add</button>
+        <button onClick={() => setActivePage(Page.Profile)} className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-all duration-300 ${activePage === Page.Profile ? 'text-primary bg-primary/10' : 'text-slate-600 hover:text-white hover:bg-white/5'}`}>
+          <span className="material-symbols-outlined">person</span>
+          <span className="text-[9px] font-bold">Profile</span>
+        </button>
       </div>
     </div>
   );
